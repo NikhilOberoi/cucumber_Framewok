@@ -11,7 +11,7 @@ import cucumber.junit.Cucumber;
 		features = "Features", // to locate the file in Project Folder
 		glue = { "stepDefinations" }, // to locate Step Definition file in Project Folder
 //		tags = { "@Functional_Test" }, // to Use to execute the specific Feature.
-		tags={"@Login_Scenario"}, // to execute specific scenario.
+		tags={"@dataTable"}, // to execute specific scenario.
 //		tags={"@Working_With_Widgets,@Login_Scenario"}, // to execute specified OR scenario. OR means scenarios that are tagged either as @SmokeTest OR @RegressionTest.
 //		tags={"@Working_With_Widgets","@Login_Scenario"}, // to execute specific AND scenario. There are only two scenarios in our feature file which have both tags together.
 //		tags={"@Working_With_Widgets","~@Login_Scenario"}, // to ignore specific scenario. This is AND condition, which means all the scenarios tagged as @FunctionalTest but not @SmokeTest. So total tests are 15 and smoke tests are 6, so it ran just 9 tests.

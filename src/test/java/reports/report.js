@@ -86,4 +86,124 @@ formatter.feature({
     }
   ]
 });
+formatter.scenario({
+  "line": 114,
+  "name": "this is dataTable Scenario",
+  "description": "",
+  "id": "facebook-login-check-facebook-login;this-is-datatable-scenario",
+  "type": "scenario",
+  "keyword": "Scenario",
+  "tags": [
+    {
+      "line": 113,
+      "name": "@dataTable"
+    }
+  ]
+});
+formatter.step({
+  "line": 115,
+  "name": "Intialize Driver",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 116,
+  "name": "I am on Facebook registrataion page",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 117,
+  "name": "registeration with invalid user details",
+  "rows": [
+    {
+      "cells": [
+        "Fields",
+        "Values",
+        "Values 2"
+      ],
+      "line": 118
+    },
+    {
+      "cells": [
+        "First Name",
+        "Tom",
+        ""
+      ],
+      "line": 119
+    },
+    {
+      "cells": [
+        "Last Name",
+        "Kenny",
+        ""
+      ],
+      "line": 120
+    },
+    {
+      "cells": [
+        "Email Address",
+        "someone@someone.com",
+        "sometwo@someone.com"
+      ],
+      "line": 121
+    },
+    {
+      "cells": [
+        "Re-enter Email Address",
+        "someone@someone.com",
+        ""
+      ],
+      "line": 122
+    },
+    {
+      "cells": [
+        "Password",
+        "Password1",
+        ""
+      ],
+      "line": 123
+    },
+    {
+      "cells": [
+        "Birthdate",
+        "01",
+        ""
+      ],
+      "line": 124
+    }
+  ],
+  "keyword": "And "
+});
+formatter.step({
+  "line": 125,
+  "name": "Close the Browser",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "amazon_Login.intialize()"
+});
+formatter.result({
+  "duration": 3265455100,
+  "status": "passed"
+});
+formatter.match({
+  "location": "working_with_CucumberDatatable.registrationPage()"
+});
+formatter.result({
+  "duration": 2112628300,
+  "status": "passed"
+});
+formatter.match({
+  "location": "working_with_CucumberDatatable.fillForm_dataTable(DataTable)"
+});
+formatter.result({
+  "duration": 951801800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "amazon_Login.closeBrowser()"
+});
+formatter.result({
+  "duration": 165821500,
+  "status": "passed"
+});
 });

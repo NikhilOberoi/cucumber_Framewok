@@ -112,5 +112,15 @@ Examples:
 
 	@dataTable
 	Scenario: this is dataTable Scenario
-	
+	Given Intialize Driver
+	When I am on Facebook registrataion page
+	And registeration with invalid user details
+	| Fields                 | Values              | Values 2						|
+	| First Name             | Tom                 |										|
+	| Last Name              | Kenny               |										|
+	| Email Address          | someone@someone.com |sometwo@someone.com	|
+	| Re-enter Email Address | someone@someone.com |										|	
+	| Password               | Password1           |										|
+	| Birthdate              | 01                  |										|
+	Then Close the Browser
 	

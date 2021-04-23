@@ -84,12 +84,12 @@ public class keywords extends configLoad {
 			log.info("where size = 1: "+driver.getWindowHandles().toString());
 			driver.switchTo().window(driver.getWindowHandles().toString().replace("[","").replace("]",""));
 		}
-			else if(windows.size() > 1)
-			log.info("more than one window in switchToParentWindow method");
+//			else if(windows.size() > 1)
+//			log.info("more than one window in switchToParentWindow method");
 	}
 
 	// click on an element
-	public static void click(String locator) throws Exception {
+	protected static void click(String locator) throws Exception {
 		getWebElement(locator).click();
 	}
 

@@ -1,3 +1,16 @@
-2021-04-23 16:14:07 INFO  keywords:34 - Initializing Chrome Driver
-2021-04-23 16:14:07 INFO  keywords:38 - opening Browser
-2021-04-23 16:14:10 INFO  keywords:41 - Maximize Window
+2021-04-23 18:35:39 INFO  keywords:33 - Initializing Chrome Driver
+2021-04-23 18:35:39 INFO  keywords:37 - opening Browser
+2021-04-23 18:35:42 INFO  keywords:40 - Maximize Window
+2021-04-23 18:35:44 INFO  keywords:287 - Keyword to call :facebook.createNewBtn
+2021-04-23 18:35:44 INFO  keywords:294 - get locator called
+2021-04-23 18:35:44 INFO  keywords:298 - Accessing Locator type : xpath having Path: //a[contains(text(),'Create New')]
+2021-04-23 18:35:44 INFO  keywords:287 - Keyword to call :facebook.fname
+2021-04-23 18:35:44 INFO  keywords:294 - get locator called
+2021-04-23 18:35:44 INFO  keywords:298 - Accessing Locator type : xpath having Path: //input[@name='firstname']
+2021-04-23 18:35:45 INFO  keywords:287 - Keyword to call :facebook.lname
+2021-04-23 18:35:45 INFO  keywords:294 - get locator called
+2021-04-23 18:35:45 INFO  keywords:298 - Accessing Locator type : xpath having Path: //input[@name='lastname']
+2021-04-23 18:35:45 INFO  keywords:287 - Keyword to call :facebook.email
+2021-04-23 18:35:45 INFO  keywords:294 - get locator called
+2021-04-23 18:35:45 INFO  keywords:298 - Accessing Locator type : xpath having Path: //input[@name='reg_email__']
+2021-04-23 18:35:45 INFO  keywords:48 - Driver Closed Successfully
