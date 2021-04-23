@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-//import org.openqa.selenoum.
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -36,8 +36,10 @@ public class keywords extends configLoad {
 				System.getProperty("user.dir") + configure.configLoad.prop.getProperty("chromeDriver"));
 		log.info("opening Browser");
 		driver = new ChromeDriver();
+		implicitWait();
 		log.info("Maximize Window");
 		driver.manage().window().maximize();
+
 	}
 
 	// Closing Current Window
@@ -51,6 +53,14 @@ public class keywords extends configLoad {
 		driver.quit();
 	}
 
+	// Minimize Current Window
+	public void setSize(int dim1, int dim2) {
+		log.info("Window setSize has been called");
+		Dimension dm = new Dimension(dim1, dim2);
+		driver.manage().window().setSize(dm);
+		log.info("Window dimendions has ben set succesfully");
+	}
+
 	// move to Child Window
 	public static void switchToChildWindow() {
 		String parentWindow = driver.getWindowHandle();
@@ -58,9 +68,9 @@ public class keywords extends configLoad {
 		Set<String> windows = driver.getWindowHandles();
 		Iterator<String> I = windows.iterator();
 		while (I.hasNext()) {
-			if (!I.equals(parentWindow)) {
 				String iWindow = I.next();
-				System.out.println(iWindow);
+				if (!iWindow.equals(parentWindow)) {	
+				System.out.println("Switch to child window: " + iWindow);
 				driver.switchTo().window(iWindow);
 			}
 		}
@@ -68,16 +78,17 @@ public class keywords extends configLoad {
 
 	// move to Parent Window
 	public static void switchToParentWindow() {
-		// Set<String> windows = driver.getWindowHandles();
-		//// String parentWindow = driver.getWindowHandle();
-		// Iterator I = windows.iterator();
-		// while(I.hasNext()){
-		//
+		log.info("switchToParentWindow Start");
+		Set<String> windows = driver.getWindowHandles();
+		if (windows.size() == 1) {
+			log.info("where size = 1: "+driver.getWindowHandles().toString());
+			driver.switchTo().window(driver.getWindowHandles().toString().replace("[","").replace("]",""));
+		}
+			else if(windows.size() > 1)
+			log.info("more than one window in switchToParentWindow method");
 	}
-	// }
 
 	// click on an element
-
 	public static void click(String locator) throws Exception {
 		getWebElement(locator).click();
 	}
@@ -115,21 +126,32 @@ public class keywords extends configLoad {
 	// get current URL
 	public static String getCurrentURL() {
 		return driver.getCurrentUrl();
-	}	
+	}
 
 	// get Text
 	public static String getText(String locator) throws Exception {
 		return getWebElement(locator).getText();
 	}
+	
+	// get Attribute
+	public static String getAttributeText(String locator) throws Exception {
+		return getWebElement(locator).getAttribute("innerText");
+	}
+	
 
 	// navigate the url
 	public static void navigateTo(String url) {
 		driver.navigate().to(url);
 	}
-	
-	public static void selectByVisibleText(String locator, String value) throws Exception{
+
+	public static void selectByVisibleText(String locator, String value) throws Exception {
 		Select drpDwn = new Select(getWebElement(locator));
 		drpDwn.selectByVisibleText(value);
+	}
+
+	public static void selectByIndext(String locator, int value) throws Exception {
+		Select drpDwn = new Select(getWebElement(locator));
+		drpDwn.selectByIndex(value);
 	}
 
 	// Javascript Click
@@ -138,11 +160,12 @@ public class keywords extends configLoad {
 		js.executeScript("arguments[0].click();", getWebElement(locator));
 //		js.executeScript("alert('Element Clicked Successfully using JS');");
 	}
-	//Javascript sendKeys
-	public static void jsSendKeys(String locator, String Value) throws Exception{
+
+	// Javascript sendKeys
+	public static void jsSendKeys(String locator, String Value) throws Exception {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].value='b';", getWebElement(locator));
-		
+
 	}
 
 	// move to Element
@@ -173,7 +196,6 @@ public class keywords extends configLoad {
 	public static void dragAndDrop(String source, String target) throws Exception {
 		Actions a = new Actions(driver);
 		a.dragAndDrop(getWebElement(source), getWebElement(target)).perform();
-		;
 	}
 
 	// drag and drop by off sets
@@ -218,8 +240,8 @@ public class keywords extends configLoad {
 	}
 
 	// get Alert text
-	public static void getAlertText() {
-		driver.switchTo().alert().getText();
+	public static String getAlertText() {
+		return driver.switchTo().alert().getText();
 	}
 
 	// send Keys to Alert Box
@@ -273,7 +295,7 @@ public class keywords extends configLoad {
 		String[] split = locator.split(":", 2);
 		String locator_name = split[0];
 		String locator_path = split[1];
-		log.info("Accessing Locator type : "+locator_name+" having Path: "+locator_path);
+		log.info("Accessing Locator type : " + locator_name + " having Path: " + locator_path);
 		if (locator_name.toLowerCase().equals("xpath"))
 			return driver.findElement(By.xpath(locator_path));
 		else if (locator_name.toLowerCase().equals("name"))
@@ -292,7 +314,7 @@ public class keywords extends configLoad {
 			return driver.findElement(By.partialLinkText(locator_path));
 		else
 			log.error("Invalid Locator Type");
-			throw new Exception("unknown Location Type " + locator_name);
+		throw new Exception("unknown Location Type " + locator_name);
 	}
 
 	// get the WebElements List based on its locator

@@ -12,7 +12,7 @@ import test.keywords;
 public class amazon_Login extends keywords {
 
 	// public static WebDriver = driver();
-	@Given("Intialize Driver")
+	@Given("^Intialize Driver$")
 	public void intialize() throws IOException {
 		intializeDriver();
 	}

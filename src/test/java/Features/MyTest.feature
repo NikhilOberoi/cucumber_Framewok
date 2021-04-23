@@ -16,7 +16,7 @@
 #""
 ## (Comments)
 #Sample Feature Definition Template
-@Facebook_Login
+@Functional_Test 
 Feature:	 Facebook Login Check Facebook Login
 
 @Amz_Login_Scenario
@@ -71,16 +71,38 @@ Feature:	 Facebook Login Check Facebook Login
 	When Open to accordian in Widget
 	And Click all the Accordian
 	And Navigate to Autocomplete
-#	And Working with date and time
+	And Working with date and time
+	Then Close the Browser
 	
-  @Login_Scenario
+	@Auth_Urls
+	Scenario: Handling Authentication URLs
+	Given Intialize Driver
+	When Open Basic Auth URL
+	And validate Title
+	Then Close the Browser
+	
+	@window_handles
+	Scenario: working with window Handles
+	Given Intialize Driver
+	When open browse Window URL
+	And perform new window Actions
+	And Close the Browser
+	And perform new window message Actions
+#	And Close the Browser
+	
+	@statusCode
+	Scenario: working with status Code
+	Given Intialize Driver
+	When validate status code
+	
+  @Login_Scenario @negativeTestCase
   Scenario Outline: Login functionality exists
     Given I have open the browser
     When I Open Facebook Site
 	  And Enter Username <username> and Password <password>
     Then Login button Should Exsist
     And Take Screen Shot
-    And Close the Browser
+    And Close the Browser 
 	
 Examples:
 |username										|password				|
@@ -88,3 +110,7 @@ Examples:
 |prnchawla@gmail.com				|AbC@123				|
 
 
+	@dataTable
+	Scenario: this is dataTable Scenario
+	
+	

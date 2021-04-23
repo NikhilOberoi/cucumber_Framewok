@@ -7,7 +7,7 @@ import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import test.keywords;
 
-public class Steps extends keywords {
+public class facebook_ScenarioOutline extends keywords {
 
 //	public static WebDriver driver;
 

@@ -5,6 +5,7 @@ import test.keywords;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import cucumber.annotation.en.Given;
@@ -43,22 +44,20 @@ public class working_with_widgets extends keywords {
 		ArrayList<WebElement> WE = new ArrayList(getWebElements("widget.autocompletemenu"));
 		System.out.println(WE.size());
 
-		
 		for (int i = 0; i < WE.size(); i++) {
-			try{
-			WebElement element = WE.get(i);
-			String elementText = element.getAttribute("innerText");
-			System.out.println("Suggention is :" + elementText);
-			if (elementText.toLowerCase().equals("black")) {
-				element.click();
-				System.out.println(element.getText() + "is Clicked");
+		WebElement element = WE.get(i);
+			try {
+				String elementText = element.getAttribute("innerText");
+				System.out.println("Suggention is :" + elementText);
+				if (elementText.toLowerCase().equals("black")) {
+					element.click();
+					System.out.println(element.getText() + "is Clicked");
+				}
+			} catch (StaleElementReferenceException e) {
+				System.out.println(e.getMessage());
 			}
 		}
-		catch(Exception e){
-			System.out.println(e.getMessage());
-		}
-		}
-		
+
 	}
 
 	@When("Working with date and time")
